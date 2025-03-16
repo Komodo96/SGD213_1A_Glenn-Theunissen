@@ -5,17 +5,21 @@ using UnityEngine.UI;
 
 using System.Collections;
 
+using UnityEngine.SceneManagement;
+
 public class PlayerController : MonoBehaviour {
 
     [SerializeField]
 //Variable for how fast the player moves
     private float playerSpeed;
 
+    [SerializeField]
 //Variable for the UI text that will display the score on screen
-    public Text scoreText;
-	
+    private Text scoreText;
+
+    [SerializeField]
 //Variable for the UI text that will display the game winning screen
-    public Text winText;
+    private Text winText;
 
 // Rigidbody component for the player
 	private Rigidbody rb;
@@ -23,8 +27,9 @@ public class PlayerController : MonoBehaviour {
 //Variable to keep track of how many objects the player has picked up
 	private int score;
 
+    [SerializeField]
 //Variable to show Game Over UI screen 
-    public GameObject gameOverUI;
+    private GameObject gameOverUI;
 
 // At the start of the game, before the first frame update 
 	void Start ()	
@@ -98,5 +103,11 @@ public class PlayerController : MonoBehaviour {
 //set the text value of our 'winText' to active
             winText.text = "You Win!";
         }
+    }
+
+// Allow the player to restart the game by pressing the restart button from the game win screen    
+    void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
